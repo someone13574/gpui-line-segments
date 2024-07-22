@@ -58,7 +58,6 @@ impl Element for LineSegments {
         let mut prev_point = None;
 
         for (idx, point) in points.clone().into_iter().enumerate() {
-            println!("{idx}: {point:?}");
             let (return_point, path_point) = offset_points(
                 prev_point,
                 point,
@@ -70,7 +69,6 @@ impl Element for LineSegments {
             return_points.push(return_point);
             prev_point = Some(point);
         }
-        println!("\n\n");
         for return_point in return_points.into_iter().rev() {
             add_point(&mut path, return_point);
         }
@@ -118,7 +116,6 @@ fn offset_points(
     }
 
     bisector_angle /= count as f32;
-    println!("{bisector_angle}");
 
     let offset_x = (offset * bisector_angle.sin()).into();
     let offset_y = (offset * bisector_angle.cos()).into();
